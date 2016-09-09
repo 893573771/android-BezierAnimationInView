@@ -21,14 +21,16 @@ public class ViewPathEvaluator implements TypeEvaluator<ViewPoint> {
 
         if(endValue.operation == ViewPath.LINE){
 
-            startX = (startValue.operation==ViewPath.QUAD)?
-                     ((startValue.operation==ViewPath.MOVE)?startValue.x:startValue.x1):startValue.x2;
+            startX = (startValue.operation==ViewPath.QUAD)?startValue.x1:startValue.x;
 
-            startY= (startValue.operation==ViewPath.QUAD)?
-                    ((startValue.operation==ViewPath.MOVE)?startValue.y:startValue.y1):startValue.y2;
+            startX = (startValue.operation == ViewPath.CURVE)?startValue.x2:startX;
 
-            x = startX + t * (endValue.x - startValue.x);
-            y = startY+ t * (endValue.y - startValue.y);
+            startY = (startValue.operation==ViewPath.QUAD)?startValue.y1:startValue.y;
+
+            startY = (startValue.operation == ViewPath.CURVE)?startValue.y2:startY;
+
+            x = startX + t * (endValue.x - startX);
+            y = startY+ t * (endValue.y - startY);
 
 
 

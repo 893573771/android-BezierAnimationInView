@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
         ViewPath path = new ViewPath(); //偏移坐标
         path.moveTo(0,0);
         path.lineTo(0,500);
-        path.curveTo(-300,200,-600,800,-800,400);
-        
+         path.curveTo(-300,200,-600,800,-800,400);
+        path.lineTo(-800,100);
+
         ObjectAnimator anim = ObjectAnimator.ofObject(this,"fabLoc",new ViewPathEvaluator(),path.getPoints().toArray());
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
 
